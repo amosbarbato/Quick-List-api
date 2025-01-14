@@ -31,7 +31,20 @@ const addItem = (req: Request<{}, {}, RequestBody>, res: Response) => {
 
     await prisma.item.create({ data: { title } })
 
-    return prisma.item.findMany
+    return prisma.item.findMany()
+  })
+}
+
+const updateItem = (req: Request, res: Response) => {
+  safeResponse(res, async () => {
+    const { updateId, title } = req.body
+
+    await prisma.item.update({
+      where: { id: updateId },
+      data: { title },
+    })
+
+    return prisma.item.findMany()
   })
 }
 
@@ -48,4 +61,4 @@ const deleteItem = (req: Request, res: Response) => {
   })
 }
 
-export { getItems, addItem, deleteItem }
+export { getItems, addItem, updateItem, deleteItem }

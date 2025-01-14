@@ -1,5 +1,5 @@
 import bodyParser from "body-parser"
-import { addItem, deleteItem, getItems } from "./controller/item-control"
+import { addItem, deleteItem, getItems, updateItem } from "./controller/item-control"
 
 const express = require('express')
 const cors = require('cors')
@@ -14,6 +14,7 @@ app.use(bodyParser.json())
 // routes
 app.get('/', getItems)
 app.post('/add', addItem)
+app.put('/:id', updateItem)
 app.delete('/:id', deleteItem)
 
 // start the server
