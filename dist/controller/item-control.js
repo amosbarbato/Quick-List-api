@@ -42,7 +42,8 @@ var item_control_exports = {};
 __export(item_control_exports, {
   addItem: () => addItem,
   deleteItem: () => deleteItem,
-  getItems: () => getItems
+  getItems: () => getItems,
+  updateItem: () => updateItem
 });
 module.exports = __toCommonJS(item_control_exports);
 var import_client = require("@prisma/client");
@@ -69,7 +70,17 @@ var addItem = (req, res) => {
   safeResponse(res, () => __async(void 0, null, function* () {
     const { title } = req.body;
     yield prisma.item.create({ data: { title } });
-    return prisma.item.findMany;
+    return prisma.item.findMany();
+  }));
+};
+var updateItem = (req, res) => {
+  safeResponse(res, () => __async(void 0, null, function* () {
+    const { updateId, title } = req.body;
+    yield prisma.item.update({
+      where: { id: updateId },
+      data: { title }
+    });
+    return prisma.item.findMany();
   }));
 };
 var deleteItem = (req, res) => {
@@ -85,5 +96,6 @@ var deleteItem = (req, res) => {
 0 && (module.exports = {
   addItem,
   deleteItem,
-  getItems
+  getItems,
+  updateItem
 });

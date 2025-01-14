@@ -70,7 +70,17 @@ var addItem = (req, res) => {
   safeResponse(res, () => __async(void 0, null, function* () {
     const { title } = req.body;
     yield prisma.item.create({ data: { title } });
-    return prisma.item.findMany;
+    return prisma.item.findMany();
+  }));
+};
+var updateItem = (req, res) => {
+  safeResponse(res, () => __async(void 0, null, function* () {
+    const { updateId, title } = req.body;
+    yield prisma.item.update({
+      where: { id: updateId },
+      data: { title }
+    });
+    return prisma.item.findMany();
   }));
 };
 var deleteItem = (req, res) => {
@@ -92,6 +102,7 @@ app.use(cors());
 app.use(import_body_parser.default.json());
 app.get("/", getItems);
 app.post("/add", addItem);
+app.put("/:id", updateItem);
 app.delete("/:id", deleteItem);
 var PORT = 5e3;
 app.listen(PORT, () => {
