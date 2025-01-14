@@ -3,14 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "22"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/server.ts",
-    "build": "tsup src",
-    "start": "node dist/server.js"
+    "dev": "ts-node-dev src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +23,6 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.6",
     "ts-node-dev": "^2.0.0",
-    "tsup": "^8.3.5",
     "typescript": "^5.7.3"
   }
 }
